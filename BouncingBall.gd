@@ -8,6 +8,8 @@ onready var window = Vector2(
 var ball: Vector2
 var velocity := Vector2(1.0, 3.3)
 var topspeed:float = 10.0
+var acceleration: Vector2
+var mouse_last_pos: Vector2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,16 +24,34 @@ func bounce():
 		velocity.x = velocity.x * -1.0
 	if ((ball.y > window.y) || (ball.y < 1)):
 		velocity.y = velocity.y * -1.0
-	# acceleration increases in the same direction
-	var acceleration: Vector2 = velocity.normalized()
-	# You can add vectors directly with GDscript
-	velocity = velocity + velocity.normalized()
-	velocity = velocity.clamped(topspeed) # limit velocity max 10
-	ball = ball + velocity
+
+func follow_mouse():
+	# Get mouse pos
+	var mouse = get_viewport().get_mouse_position()
+	if mouse == mouse_last_pos:
+		acceleration = velocity.normalized()
+		return
+	if ((mouse.x > window.x) || (mouse.x < 1)):
+		acceleration = velocity.normalized()
+		return
+	if ((mouse.y > window.y) || (mouse.y < 1)):
+		acceleration = velocity.normalized()
+		return
+	# Compute direction
+	var direction = mouse - ball
+	# Normalize and Scale
+	acceleration = direction.normalized() * 5
+	# Set last mouse position
+	mouse_last_pos = mouse
 
 func _process(delta):
 	update()
 
 func _draw():
+	follow_mouse()
 	bounce()
-	draw_circle(ball, 20.0, Color.blueviolet)
+	# Change balls location
+	velocity = velocity + acceleration
+	velocity = velocity.clamped(topspeed) # limit velocity max 10
+	ball = ball + velocity
+	draw_circle(ball, 20.0, Color.greenyellow)
