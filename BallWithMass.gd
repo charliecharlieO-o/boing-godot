@@ -1,5 +1,6 @@
 extends Node2D
 
+const ball_color = Color(0.148804, 0.71875, 0.29129, 0.694118)
 onready var window = Vector2(
 	get_viewport().size.x,
 	get_viewport().size.y
@@ -11,8 +12,6 @@ var acceleration: Vector2
 var mass: float
 
 func _ready():
-	mass = 1
-	location = Vector2(30, 30)
 	velocity = Vector2(0, 0)
 	acceleration = Vector2(0, 0)
 
@@ -42,10 +41,11 @@ func _draw():
 	_applyForce(Vector2(0, 0.1))
 	_updateForces()
 	_checkEdges()
-	draw_circle(location, 20.0, Color.greenyellow)
+	draw_circle(location, 20.0 * self.mass, ball_color)
 
 func _process(delta):
 	update()
 
-func _init(mass: int, x_pos: int, y_pos: int):
-	pass
+func _init(mass: float, x_pos: int, y_pos: int):
+	self.mass = mass
+	self.location = Vector2(x_pos, y_pos)
