@@ -3,5 +3,9 @@ extends Node2D
 const Ball = preload("res://BallWithMass.gd")
 
 func _ready():
-	var ball = Ball.new(1, 2, 3)
-	add_child(ball)
+	for i in range(30):
+		add_child(Ball.new(
+			rand_range(0.1, 6.5),
+			30,
+			30
+		))

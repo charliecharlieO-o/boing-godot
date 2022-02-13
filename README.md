@@ -4,4 +4,8 @@
 
 # A bouncing ball that follows your mouse
 
-![folow-gif](./boing_v2.gif)
+![follow-gif](./boing_v2.gif)
+
+# Bouncing balls influneced by forces
+
+![mass](./boing_v3.gif)
