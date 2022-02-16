@@ -37,8 +37,15 @@ func _checkEdges():
 		velocity.y = velocity.y * -1.0
 
 func _draw():
+	# Scaling gravity by mass
+	var gravity = Vector2(0, 0.1 * self.mass)
+
+	# Apply forces
 	_applyForce(Vector2(0.01, 0))
 	_applyForce(Vector2(0, 0.1))
+	_applyForce(gravity)
+
+	# Update
 	_updateForces()
 	_checkEdges()
 	draw_circle(location, 20.0 * self.mass, ball_color)
