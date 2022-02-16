@@ -9,3 +9,7 @@
 # Bouncing balls influneced by forces
 
 ![mass](./boing_v3.gif)
+
+# Let's add friction!
+
+![friction](./boing_v4.gif)
