@@ -20,8 +20,7 @@ func _ready():
 	acceleration = Vector2(0, 0)
 
 func _applyForce(force: Vector2):
-	# Newton's law
-	# Net Force equals mass times acceleration.
+	# Newton's law: Net Force equals mass times acceleration.
 	# Receive a force, divide by mass and add to acceleration
 	var f := force/mass
 	# force accumulation
@@ -56,4 +55,4 @@ func _physics_process(delta):
 		# The bounce function seems to include some kind of friction
 		velocity = velocity.bounce(collide.normal)
 		# Use this to avoid the regular bounce friction
-		#velocity = velocity * collide.normal
+		# velocity = velocity * collide.normal
