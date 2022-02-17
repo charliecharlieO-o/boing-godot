@@ -28,6 +28,7 @@ Add friction to the kinematic objects
 
 ## Balls with the bounce function in godot
 
+Add friction, gravity, wind and use the bounce function for vectors on godot.
 ```
 var collide = move_and_collide(velocity)
 if collide:
