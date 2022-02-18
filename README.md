@@ -38,3 +38,7 @@ if collide:
   velocity = velocity * collide.normal
 ```
 ![godot bounce](./gifs/gd_bounce_f.gif)
+
+## Balls that experience drag when entering "water"
+
+![water drag](./gifs/water_drag.gif)
